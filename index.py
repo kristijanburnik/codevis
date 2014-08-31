@@ -3,8 +3,9 @@ import fnmatch
 import re
 import graph
 import sys
+import internal
 
-root='/usr/local/google/home/burnik/chromium/src'
+root=internal.root
 
 pattern = re.compile('#include\s+(["<].*[">])');
 
