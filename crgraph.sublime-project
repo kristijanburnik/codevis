@@ -1,0 +1,16 @@
+{
+ "folders":
+ [
+ {
+ "path": "chromium-graph",
+ "name": "src",
+ "file_exclude_patterns": [
+ "*.gitignore",
+ "*.gitmodules",
+ ],
+ "folder_exclude_patterns": [
+   ".git",
+ ]
+ }
+ ]
+}
