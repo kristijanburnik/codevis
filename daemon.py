@@ -7,10 +7,6 @@ import config as conf
 import socket
 import graph_service
 
-def load():
-  (index,g) = index.load( conf.index_filename , conf.graph_filename )
-  print "Done loading:" , len(index) , len(g.export())
-
 def daemon_work(s,service):
   while True:
     s2, peeraddr = s.accept()

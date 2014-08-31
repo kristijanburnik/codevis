@@ -1,3 +1,4 @@
+import inspect
 
 class RPCService:
   def __init__(self):
@@ -9,10 +10,10 @@ class RPCService:
     code += "class " + clasname +"(rpcclient.RPCClient):\n\n"
     ignore = ['__doc__', '__init__', '__module__','generate_stub']
     for method in dir(service_class):
-      if method in ignore:
+      if method in ignore or method[0] == "_":
         continue
 
-      method_args = getattr(service_class,method).func_code.co_varnames
+      method_args = inspect.getargspec(getattr(service_class,method)).args
       args = [arg for arg in method_args if arg != 'self']
       arglist = ', '.join(args)
       code += "\tdef "+ method + "(self, " + arglist  + "):\n"

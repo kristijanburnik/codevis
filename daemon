@@ -1,0 +1,39 @@
+#!/bin/bash
+
+function running {
+  [ -f daemon.pid ] && ps -p $(cat daemon.pid) 2>/dev/null 1>/dev/null
+}
+
+function status {
+  running && echo "Running" 1>&2 && return || echo "Stopped" 1>&2
+}
+
+function start {
+  running && echo "Already running" 1>&2 && return
+  python daemon.py 1>daemon.stdout 2>daemon.stderr &
+  echo $! > daemon.pid
+}
+
+function track {
+  tail -f daemon.stderr daemon.stdout
+}
+
+function stop {
+  kill $(cat daemon.pid) 2>/dev/null || echo "Already stopped"  1>&2 && return
+  rm daemon.pid
+  rm daemon.socket
+}
+
+function restart {
+  stop 2>/dev/null
+  start
+}
+
+
+if [ "$1" != "" ]; then
+  for x in $@; do
+    $x
+  done
+else
+  restart
+fi

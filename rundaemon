@@ -1,4 +1,0 @@
-#!/bin/sh
-killdaemon 2>/dev/null
-python daemon.py 1>daemon.stdout 2>daemon.stderr &
-echo $! > daemon.pid

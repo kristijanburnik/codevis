@@ -1,5 +1,2 @@
 #!/bin/sh
-kill $(cat daemon.pid)
-rm daemon.pid
-rm daemon.socket
 

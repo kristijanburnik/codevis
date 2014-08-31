@@ -2,9 +2,12 @@ import rpcclient
 
 class GraphClient(rpcclient.RPCClient):
 
-	def add(self, a, b):
-		return self.call('add', [a, b])
+	def getConnections(self, header, direction):
+		return self.call('getConnections', [header, direction])
 
-	def sub(self, a, b):
-		return self.call('sub', [a, b])
+	def getDependencies(self, header):
+		return self.call('getDependencies', [header])
+
+	def getReferences(self, header):
+		return self.call('getReferences', [header])
 
