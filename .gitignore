@@ -1,0 +1,6 @@
+*.txt
+*.pyc
+*.pid
+*.socket
+*.stderr
+*.stdout
