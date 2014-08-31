@@ -1,3 +1,4 @@
+internal.py
 *.txt
 *.pyc
 *.pid
