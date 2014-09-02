@@ -2,11 +2,15 @@
  "folders":
  [
  {
- "path": "chromium-graph",
+ "path": "~/chromium-graph",
  "name": "src",
  "file_exclude_patterns": [
  "*.gitignore",
  "*.gitmodules",
+ "*.stderr",
+ "*.stdout",
+ "*.socket",
+ "*.pid",
  ],
  "folder_exclude_patterns": [
    ".git",
