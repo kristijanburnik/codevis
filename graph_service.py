@@ -13,17 +13,20 @@ class GraphService(rpc.RPCService):
       self.revindex[i] = filename
     print "Done loading"
 
-  def getConnections(self,header,direction = 0):
-    node =  self.graph.getVertex(self.index[header])
+  def nodeExists(self,node):
+    return self.index.has_key(node)
+
+  def getConnections(self,node,direction = 0):
+    node = self.graph.getVertex(self.index[node])
     return [ self.revindex[v.id]
       for v in self.graph.getVertex(node.id).getConnections()
         if direction == 0 or node.getWeight(v) == direction]
 
-  def getDependencies(self,header):
-    return self.getConnections(header,1)
+  def getDependencies(self,node):
+    return self.getConnections(node,1)
 
-  def getReferences(self,header):
-    return self.getConnections(header,-1)
+  def getReferences(self,node):
+    return self.getConnections(node,-1)
 
 
 if __name__ == '__main__':
