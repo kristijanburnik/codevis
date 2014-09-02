@@ -15,5 +15,9 @@ class RPCClient:
     d = self.sock.recv(conf.socket_buffer_size)
     self.sock.send("x")
     self.sock.close()
-    return eval(d)
+
+    (result,error) = eval(d)
+    if error != None:
+      raise error
+    return result
 

@@ -12,8 +12,13 @@ def daemon_work(s,service):
     s2, peeraddr = s.accept()
     request = s2.recv(conf.socket_buffer_size)
     (method,args) = eval(request);
-    result = getattr(service, method)(*args)
-    s2.send(str(result))
+    result = None
+    error = None
+    try:
+      result = getattr(service, method)(*args)
+    except Exception as error:
+      pass
+    s2.send(str([result,error]))
     s2.recv(1)
     s2.close()
 
